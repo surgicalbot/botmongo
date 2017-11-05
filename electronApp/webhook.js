@@ -17,4 +17,4 @@ app.get('/chat', function(req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 
-app.listen(3000);
+app.listen(process.env.PORT||7000);

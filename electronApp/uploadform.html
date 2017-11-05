@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chat Assistant</title>
+  <link rel="shortcut icon" href="./avatar/blank.ico" />
+  <link rel="stylesheet" href="style/bootstrap.min.css">
+
+  <!--Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Propeller css -->
+  <link href="style/propeller.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style/style.css">
+
+  <!--Animate css -->
+  <link rel="stylesheet" href="style/animate.min.css">
+
+</head>
+
+
+<body style="margin:10px 0px">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+<form id        =  "uploadForm"
+     enctype   =  "multipart/form-data"
+     action    =  "/api/photo"
+     method    =  "post"
+>
+<div class="form-group">
+ <div class="panel panel-default"  style="padding-bottom:10px;height:auto!important">
+  <div class="panel-heading">File Uploading</div>
+  <div class="panel-body">
+<input type="file" class="form-control" name="userPhoto" />
+<input type="submit" class="btn btn-primary btn-sm" style="padding:5px 10px" value="Upload Image" name="submit">
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</body>
+
+</html>

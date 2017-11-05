@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>My Ricoh Website</title>
+	<link rel="stylesheet" href="style/bootstrap.min.css">
+
+	<!--Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Propeller css -->
+	<link href="style/propeller.min.css" rel="stylesheet">
+	<style type="text/css">
+		.popover {
+			max-width: 420px;
+		}
+	</style>
+</head>
+
+<body background="images/ricoh-website-background.png">
+	<a href="#" onclick="createWindow('/',334,661)" style="float: right;background-color: #4f92ac;color: white;position: relative;right: 20%;top: 50px;padding-left: 11px;padding-right: 11px;font-weight: 600;">Click to chat</a>
+	<footer>
+		<!--<div class="menu pmd-floating-action" role="navigation">
+
+			<a class="btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect  btn-primary" id="webChat" data-trigger="click" data-toggle="popover"
+			 data-placement="top" data-content="<iframe  src='http://localhost:3000/?popup=1' height='510' width='400' style='border:none'></iframe>"
+			 data-html="true" href="javascript:void(0);">
+				<span class="pmd-floating-hidden">Primary</span>
+				<i id="webChatPrimaryIcon" class="material-icons md-light pmd-sm">chat</i>
+            	<i id="webChatCloseIcon" class="material-icons md-light pmd-sm" style="display: none">close</i>
+        	</a>
+
+		</div-->
+
+	</footer>
+	<script data-main="js/require-setup" src="require.js"></script>
+	<script>
+
+		function bindPopoverEvents() {
+
+			$('#webChat').on('hide.bs.popover', function () {
+
+				$("#webChatPrimaryIcon").show();
+				$("#webChatCloseIcon").hide();
+
+			})
+
+			$('#webChat').on('show.bs.popover', function () {
+
+				$("#webChatPrimaryIcon").hide();
+				$("#webChatCloseIcon").show();
+
+			})
+		}
+
+		// Loading Libary
+		require(['lib/jquery.min'], function ($) {
+
+			require(['lib/bootstrap.min'], function () {
+				require(['lib/propeller'], function () {
+					console.log("Loaded :)");
+
+					bindPopoverEvents()
+
+				});
+			});
+		});
+
+		//Stop Window Resize
+		function createWindow(src, width, height) {
+			console.log($('.showheader').hide());
+			$('.showheader').hide();
+			var win = window.open(src, "_new", "width=" + width + ",height=" + height);
+			/*win.addEventListener("resize", function () {
+				win.resizeTo(width, height);
+				let msgboxh = $("div.header-popup").next().height();
+				let chath = $("div.header-popup").next().next().height();
+				let typetext = $("div.header-popup").next().next().next().height();
+				let footer = $("div.header-popup").next().next().next().next().height();
+				let bodyh = $("body").height();
+
+				let finalcalc = bodyh - (chath + typetext);
+				let finalcss = 'calc(100%-' + finalcalc + 'px)';
+				$("div.chat-body").css('height', 'calc(' + finalcalc + 'px)');
+			});*/
+		}
+	</script>
+</body>
+
+</html>

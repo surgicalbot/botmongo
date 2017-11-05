@@ -1,0 +1,478 @@
+/* -------------------------------------------------------------------
+Copyright (c) 2017-2017 Hexaware Technologies
+This file is part of the Innovation LAB - Offline Bot.
+------------------------------------------------------------------- */
+/* Bootstrap css */
+
+
+html,body{
+    height:100%;
+    overflow-y: hidden;
+
+}
+.main-container{
+    background-color: #fff;
+    height:100%;
+    overflow-y: hidden;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
+    opacity: 0;
+}
+
+.chat-body {
+    height: 436px;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    display: block;
+    overflow-x: hidden;
+}
+
+.chat-welcome-message {
+  padding-top: 33%;
+}
+
+.pmd-list .list-group-item {
+  clear: both;
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+}
+.chat-body h1 {
+    text-align: center;
+
+}
+
+
+.chat-user-dialog {
+  background-color: #4F92AB;
+  margin-top: 0%;
+  margin-left: 9%;
+  height: 43px;
+  left: 17px;
+  margin-right: 9%;
+  padding: 5% 7% 8% 7%;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.21), 0 6px 20px 0 rgba(0, 0, 0, 0);
+  margin-bottom: 0;
+  line-height: 1.4;
+  color: #fcf8e3;
+  font-size: .875rem;
+  overflow-wrap: break-word
+}
+
+.user-txt-space {
+    position: relative;
+    left: 10%;
+}
+
+.bot-txt-space {
+  position: relative;
+}
+/* Following are carosel css */
+
+.carousel {
+    margin-bottom: 0;
+    padding: 0 40px 30px 40px;
+}
+
+.carousel-control {
+    top: 50%;
+    /*background:rgba(207,20,43, 0.65); */
+    width: 32px;
+    height: 42px;
+    /*border: 1px solid #999;*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.41), 0 6px 20px 0 rgba(0, 0, 0, 0);
+    margin-top: -20px;
+}
+
+
+
+
+/* The indicators */
+.carousel-indicators {
+    right: 50%;
+    top: auto;
+    bottom: -10px;
+    margin-right: -19px;
+}
+
+
+/* The colour of the indicators */
+
+.carousel-indicators li {
+    background: #cecece;
+}
+
+.carousel-indicators .active {
+    background: #428bca;
+}
+
+.airlinePadding {
+    padding: 10px 0px
+}
+
+.pmd-card-inverseblue {
+    background-color: #1E90FF;
+    color: #eceeef;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    padding: 11px 41px 13px 13px;
+    margin: 23px;
+}
+.text-color-red{
+    color: #DC143C;
+}
+
+.card-custom{
+  border-radius: 15px;
+  margin-bottom: 30px;
+  padding: 11px 41px 13px 13px;
+  margin: 23px;
+  background-color: #fff;
+}
+
+.carousel-custom {
+  border-radius: 15px;
+  padding: 0% 0% 0% 0%;
+  margin: 5%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.21), 0 6px 20px 0 rgba(0, 0, 0, 0);
+}
+
+.custom-image-wrap {
+  display: block;
+    padding: 4px;
+    margin-bottom: -5%;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px 15px 0px 0px;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+}
+
+.img-circle {
+  border-radius: 15px 15px 0px 0px;
+}
+
+.carousel-title {
+  font-size: 105%;
+  font-weight: bold;
+  margin: 2% 2% 0% 2%
+}
+
+.carousel-subtitle {
+  font-size: 85%;
+  font-weight: 0%;
+  margin: 2% 2% 3% 2%;
+}
+
+.card-title {
+  font-size: 105%;
+      font-weight: bold;
+      margin: 2% 2% 0% -4%;
+      color: #606060;
+}
+
+.card-subtitle {
+  font-size: 85%;
+  font-weight: 0%;
+  margin: 2% 2% 3% -4%;
+}
+
+.btn-carousel {
+  min-width: 96%;
+  padding: 2% 3%;
+  margin: 3% 0% -2% 2%;
+  border-radius: 5px;
+}
+
+.btn {
+  min-width: 7%;
+  padding: 2% 3%;
+  margin: 3% 0% -2% 2%;
+  border-radius: 5px;
+  font-size: smaller;
+}
+
+.custom-infocard {
+    border-radius: 15px;
+    padding: 0px 10px;
+    margin-right: 25px;
+    max-width: 75%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.21), 0 6px 20px 0 rgba(0, 0, 0, 0);
+}
+
+.bot-res-timestamp-card{
+
+
+  font-size: 77%;
+  color: #ada497;
+  display: inline-block;
+  height: 0%;
+  text-align: left;
+  position: relative;
+  bottom: 24px;
+  width: 100%;
+  margin-right: 25px;
+  float: left;
+}
+
+.background-color-custom {
+  background-color: #f5f5f5;
+}
+
+.custom-quick-reply-background {
+  background-color: white;
+  border-radius: 15px;
+  height: 43px;
+  left: 2px;
+  margin-top: 3%;
+  margin-left: 9%;
+  margin-right: 9%;
+  padding: 5% 7% 5% 7%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.21), 0 6px 20px 0 rgba(0, 0, 0, 0);
+}
+
+.user-timestamp {
+    font-size: 77%;
+    color: #ada497;
+    display: inline-block;
+    height: 0%;
+    text-align: right;
+    position: relative;
+    bottom: 6px;
+    width: 100%;
+    margin-right: 25px;
+    float: right;
+}
+
+.bot-res-timestamp {
+
+    font-size: 77%;
+    color: #ada497;
+    display: inline-block;
+    height: 0%;
+    text-align: left;
+    position: relative;
+    bottom: 1px;
+    width: 100%;
+    margin-right: 25px;
+    float: left;
+}
+
+.list-group-item-text-user {
+        line-height: 1.4;
+        color: #fcf8e3;
+        font-size: .875rem;
+        overflow-wrap: break-word;
+        background-color: #666666;
+        max-width: 75%;
+        border-radius: 10px;
+        display: inline-block;
+        position: relative;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.21), 0 6px 20px 0 rgba(0, 0, 0, 0);
+        float: right;
+        padding: 15px 10px;
+        margin-right: 25px;
+}
+
+.list-group-item-text-bot {
+
+     line-height: 1.4;
+     color: #000000;
+     font-size: .875rem;
+     overflow-wrap: break-word;
+     background-color: #DEDEDE;
+     max-width: 75%;
+     border-radius: 10px;
+     display: inline-block;
+     position: relative;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.21), 0 6px 20px 0 rgba(0, 0, 0, 0);
+     padding: 15px 10px;
+     margin-right: 25px;
+}
+
+.bot-txt-reply {
+    background-color: white;
+    border-radius: 10px;
+    height: 43px;
+    left: 2px;
+    margin-top: 3%;
+    margin-left: 9%;
+    margin-right: 9%;
+    padding: 5% 7% 5% 7%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.21), 0 6px 20px 0 rgba(0, 0, 0, 0);
+}
+
+.welcome-message {
+    font-size: inherit;
+    color: #5e5e5e;
+    position: relative;
+}
+
+.carousel-body {
+  background-color: white;
+  padding: 8px 12px;
+}
+
+.pmd-card-title {
+  padding: 16px 16px 0 16px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.quick-replies-buttons {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.bot-res-timestamp-qr {
+    text-align: left;
+    /* margin: 2% 5% 0% 6%; */
+    font-size: 77%;
+    color: #ada497;
+}
+
+.list-group-item-quick-reply-space{
+  line-height: 1.4;
+  color: #000000;
+  font-size: .875rem;
+  overflow-wrap: break-word;
+  background-color: #DEDEDE;
+  max-width: 75%;
+  border-radius: 10px;
+  display: inline-block;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.21), 0 6px 20px 0 rgba(0, 0, 0, 0);
+  padding: 15px 10px;
+  margin-right: 25px;
+}
+
+.main-container {
+  max-width: 420px;
+}
+
+.pmd-btn-outline.btn-info {
+  color: #CF142B;
+  background-color: transparent;
+  border: solid 1px #CF142B;
+}
+.pmd-btn-outline.btn-info:hover, .pmd-btn-outline.btn-info:focus {
+  color: #fff;
+  background-color: #CF142B;
+  border: solid 1px #CF142B;
+}
+
+
+.carousel-control {
+    /*background-image: -webkit-linear-gradient(left,rgba(79,146,171,.95) 0,rgba(79,146,171,.0001) 100%);
+    background-image: -o-linear-gradient(left,rgba(79,146,171,.95) 0,rgba(79,146,171,.0001) 100%);
+    background-image: -webkit-gradient(linear,left top,right top,from(rgba(79,146,171,.95)),to(rgba(79,146,171,.0001)));
+    background-image: linear-gradient(to right,rgba(79,146,171,.95) 0,rgba(79,146,171,.0001) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+    background-repeat: repeat-x;
+    background-color: #CF142B;*/
+
+}
+
+.carousel-control .icon-next, .carousel-control .icon-prev {
+  font-size: 30px;
+  font-weight: bold;
+  top: 34%;
+}
+
+.carousel-inner .img-circle {
+  width: 264px;
+  height: 137px;
+  object-fit: contain;
+  background-image: url(../avatar/imgloader.gif);
+  background-position: center;
+  background-color: #FFF;
+  background-size: 40px 40px;
+  background-repeat:no-repeat;
+}
+.center-modal-auto
+{
+  width: 85%;
+  max-width: 28em;
+  background-repeat:no-repeat;
+}
+.no-scroll-x{
+  overflow-x: hidden;
+}
+
+.modal-box-custom{
+    font-family: Roboto;
+    line-height: 1.1;
+    font-size: small;
+    color: gray;
+    border-radius: 10px;
+}
+
+/*.material-icons.custom-arrow-color-left { color: #FB8C00; }
+.material-icons.custom-arrow-color-right { color: #FB8C00; }*/
+
+/* To show carousel controls only on hover like Facebook */
+.carousel .carousel-control { opacity: 0; transition: opacity 0.5s ease-in;}
+.carousel:hover .carousel-control { opacity: 1; transition: opacity 0.5s ease-in;}
+
+.mobile-device .carousel .carousel-control { opacity: 1;}
+.pmd-textfield textarea.form-control:focus {
+  border-bottom: 0px;
+}
+.pmd-card-actions {
+  text-align: right;
+  padding: 8px 4px;
+}
+
+.infocard-btn-custom{
+  background-color: #ffffff;
+  color: #CF142B;
+  font-weight: 800;
+}
+
+.pmd-card-actions .btn:first-child {
+  margin-right: 0px;
+  padding: 8px;
+}
+.pmd-card-actions .btn:last-child {
+  margin-right: 0px;
+  padding: 8px;
+}
+
+.pmd-card-actions .btn {
+  min-width: inherit;
+  /*padding: 10px 8px;*/
+}
+.pmd-card-actions .btn {
+  min-width: inherit;
+  padding: 3px 8px;
+}
+
+.btn-primary:hover,.dropdown-toggle.btn-primary:hover {
+  background-color: #CF124B;
+}
+.btn-primary:focus,.dropdown-toggle.btn-primary:focus {
+  background-color: #CF142B;
+}
+
+.custom-carousel-left{
+    background-color: rgba(148, 147, 147, 0.32);
+    background-repeat: repeat-x;
+}
+
+.carousel-control.right{
+    right: 0;
+    left: auto;
+    background-color: rgba(148, 147, 147, 0.32);
+    background-repeat: repeat-x;
+}
+
+.pmd-textfield-focused {
+  background-color: #CF142B;
+}

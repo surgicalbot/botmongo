@@ -64,25 +64,41 @@ app.get('/', function (req, res) {
   res.send("/richowebsites");
 });
 app.post('/', function (req, res) {
-  mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
-    if (err) {
-      console.log(err);
-      process.exit(1);
-    }
-    // Save database object from the callback for reuse.
-    var db = database;
-    db.collection("surgery").find({
-      $and: [
-        { "HOSPITAL": hospittyp },
-        { "OPERATION": surgicaltyp }
-      ]
-    }).toArray(function (err, result) {
-      if (err) throw err;
-      console.log(result);
-      db.close();
+  if (!req.body || !req.body.result || !req.body.result.parameters) {
+    return res.status(400).send('Bad Request')
+  }
+  let action = req.body.result.action; // https://dialogflow.com/docs/actions-and-parameters
+
+  // Parameters are any entites that Dialogflow has extracted from the request.
+  const parameters = req.body.result.parameters; // https://dialogflow.com/docs/actions-and-parameters
+  const hospittyp = parameters.hospital_type;
+  const surgicaltyp = parameters.surgical_type;
+  if (action == "input.surgery") {
+    mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
+      if (err) {
+        console.log(err);
+        process.exit(1);
+      }
+      // Save database object from the callback for reuse.
+      var db = database;
+      db.collection("surgery").find({
+        $and: [
+          { "HOSPITAL": hospittyp },
+          { "OPERATION": surgicaltyp }
+        ]
+      }).toArray(function (err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.status(200).json({
+          source: 'webhook',
+          speech: JSON.stringify(result),
+          displayText: JSON.stringify(result)
+        })
+        db.close();
+      });
     });
-  });
-  res.send("It is good");
+
+  }
 });
 app.get("/formupload", function (req, res) {
   res.sendFile(__dirname + '/uploadform.html');

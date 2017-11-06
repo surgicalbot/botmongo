@@ -57,11 +57,10 @@ app.post('/api/photo', function (req, res) {
   });
 });
 function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
-function toTitleCase(str)
-{
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 }
 var ObjectID = mongodb.ObjectID;
 app.use(express.static(__dirname));
@@ -90,9 +89,10 @@ app.post('/', function (req, res) {
       var db = database;
       db.collection("surgery").find({
         $and: [
-          { $or:[{"HOSPITAL": hospittyp.toLowerCase() },{"HOSPITAL": hospittyp.toUpperCase() },{"HOSPITAL": capitalizeFirstLetter(hospittyp)},{"HOSPITAL": toTitleCase(hospittyp)}]},
-          { $or:[{"OPERATION": surgicaltyp.toLowerCase() },{"OPERATION": surgicaltyp.toUpperCase() },{"OPERATION": capitalizeFirstLetter(surgicaltyp)},{"OPERATION": toTitleCase(surgicaltyp)}]},
-          { $or:[{"TREATMENT": treatmentyp.toLowerCase() },{"TREATMENT": treatmentyp.toUpperCase() },{"TREATMENT": capitalizeFirstLetter(treatmentyp)},{"TREATMENT": toTitleCase(treatmentyp)}]}
+          { $or: [{ "HOSPITAL": hospittyp.toLowerCase() }, { "HOSPITAL": hospittyp.toUpperCase() }, { "HOSPITAL": capitalizeFirstLetter(hospittyp) }, { "HOSPITAL": toTitleCase(hospittyp) }] },
+          { $or: [{ "OPERATION": surgicaltyp.toLowerCase() }, { "OPERATION": surgicaltyp.toUpperCase() }, { "OPERATION": capitalizeFirstLetter(surgicaltyp) }, { "OPERATION": toTitleCase(surgicaltyp) }] },
+          { $or: [{ "TREATMENT": treatmentyp.toLowerCase() }, { "TREATMENT": treatmentyp.toUpperCase() }, { "TREATMENT": capitalizeFirstLetter(treatmentyp) }, { "TREATMENT": toTitleCase(treatmentyp) }] },
+          { $or: [{ "Statistics": 'Mean' }, { "TREATMENT": 'MEAN' }, { "TREATMENT": 'Mean' }] }
         ]
       }).toArray(function (err, result) {
         if (err) throw err;

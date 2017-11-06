@@ -79,6 +79,7 @@ app.post('/', function (req, res) {
   const hospittyp = parameters.hospital_type;
   const surgicaltyp = parameters.surgical_type;
   const treatmentyp = parameters.treatment_type;
+  const totalCost=parameters.Statistics?parameters.Statistics:"";
   if (action == "input.surgery") {
     mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
       if (err) {
@@ -92,7 +93,7 @@ app.post('/', function (req, res) {
           { $or: [{ "HOSPITAL": hospittyp.toLowerCase() }, { "HOSPITAL": hospittyp.toUpperCase() }, { "HOSPITAL": capitalizeFirstLetter(hospittyp) }, { "HOSPITAL": toTitleCase(hospittyp) }] },
           { $or: [{ "OPERATION": surgicaltyp.toLowerCase() }, { "OPERATION": surgicaltyp.toUpperCase() }, { "OPERATION": capitalizeFirstLetter(surgicaltyp) }, { "OPERATION": toTitleCase(surgicaltyp) }] },
           { $or: [{ "TREATMENT": treatmentyp.toLowerCase() }, { "TREATMENT": treatmentyp.toUpperCase() }, { "TREATMENT": capitalizeFirstLetter(treatmentyp) }, { "TREATMENT": toTitleCase(treatmentyp) }] },
-          { $or: [{ "Statistics": 'Mean' }, { "TREATMENT": 'MEAN' }, { "TREATMENT": 'Mean' }] }
+          { $or: [{ "Statistics": totalCost?totalCost.toLowerCase():'mean' }, { "TREATMENT": totalCost?totalCost.toUpperCase():'MEAN' }, { "TREATMENT": totalCost?capitalizeFirstLetter(totalCost):'Mean' }] }
         ]
       }).toArray(function (err, result) {
         if (err) throw err;

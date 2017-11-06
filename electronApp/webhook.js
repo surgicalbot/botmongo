@@ -63,6 +63,9 @@ app.use(bodyParser.json());
 app.get('/', function (req, res) {
   res.send("/richowebsites");
 });
+app.post('/', function (req, res) {
+  res.send("/richowebsites");
+});
 app.get("/formupload", function (req, res) {
   res.sendFile(__dirname + '/uploadform.html');
 });
@@ -74,4 +77,4 @@ app.get('/chat', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 
-app.listen(process.env.PORT || 7000);
+app.listen(7000);

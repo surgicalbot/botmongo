@@ -100,8 +100,8 @@ app.post('/', function (req, res) {
         console.log(result);
         res.status(200).json({
           source: 'webhook',
-          speech: 'Statistics=>'+totalCost,
-          displayText:'Statistics=>'+totalCost
+          speech: JSON.stringify(result),
+          displayText:JSON.stringify(result)
         })
         db.close();
       });

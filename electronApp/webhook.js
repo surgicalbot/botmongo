@@ -79,7 +79,7 @@ app.post('/', function (req, res) {
   const hospittyp = parameters.hospital_type;
   const surgicaltyp = parameters.surgical_type;
   const treatmentyp = parameters.treatment_type;
-  const totalCost=parameters.Statistics?parameters.Statistics:"";
+  const totalCost=parameters.Statistics!==""?parameters.Statistics:"";
   if (action == "input.surgery") {
     mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
       if (err) {

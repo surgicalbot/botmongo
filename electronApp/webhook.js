@@ -93,7 +93,7 @@ app.post('/', function (req, res) {
           { $or: [{ "HOSPITAL": hospittyp.toLowerCase() }, { "HOSPITAL": hospittyp.toUpperCase() }, { "HOSPITAL": capitalizeFirstLetter(hospittyp) }, { "HOSPITAL": toTitleCase(hospittyp) }] },
           { $or: [{ "OPERATION": surgicaltyp.toLowerCase() }, { "OPERATION": surgicaltyp.toUpperCase() }, { "OPERATION": capitalizeFirstLetter(surgicaltyp) }, { "OPERATION": toTitleCase(surgicaltyp) }] },
           { $or: [{ "TREATMENT": treatmentyp.toLowerCase() }, { "TREATMENT": treatmentyp.toUpperCase() }, { "TREATMENT": capitalizeFirstLetter(treatmentyp) }, { "TREATMENT": toTitleCase(treatmentyp) }] },
-          { $or: [{ "Statistics": totalCost.toLowerCase() }, { "TREATMENT": totalCost.toUpperCase()}, { "TREATMENT": capitalizeFirstLetter(totalCost) }] }
+          { $or: [{ "Statistics": totalCost.toLowerCase() }, { "Statistics": totalCost.toUpperCase()}, { "Statistics": capitalizeFirstLetter(totalCost) }] }
         ]
       }).toArray(function (err, result) {
         if (err) throw err;

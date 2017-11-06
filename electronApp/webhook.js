@@ -83,8 +83,8 @@ app.post('/', function (req, res) {
       var db = database;
       db.collection("surgery").find({
         $and: [
-          { "HOSPITAL": hospittyp },
-          { "OPERATION": surgicaltyp }
+          { "HOSPITAL": hospittyp.toUpperCase() },
+          { "OPERATION": surgicaltyp.toUpperCase() }
         ]
       }).toArray(function (err, result) {
         if (err) throw err;

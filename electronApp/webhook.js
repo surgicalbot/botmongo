@@ -56,7 +56,13 @@ app.post('/api/photo', function (req, res) {
 
   });
 });
-
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
 var ObjectID = mongodb.ObjectID;
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
@@ -83,8 +89,8 @@ app.post('/', function (req, res) {
       var db = database;
       db.collection("surgery").find({
         $and: [
-          { "HOSPITAL": hospittyp.toUpperCase() },
-          { "OPERATION": surgicaltyp.toUpperCase() }
+          { $or:[{"HOSPITAL": hospittyp.toLowerCase() },{"HOSPITAL": hospittyp.toUpperCase() },{"HOSPITAL": capitalizeFirstLetter(hospittyp)},{"HOSPITAL": toTitleCase(hospittyp)}]},
+          { $or:[{"OPERATION": surgicaltyp.toLowerCase() },{"OPERATION": surgicaltyp.toUpperCase() },{"OPERATION": capitalizeFirstLetter(surgicaltyp)},{"OPERATION": toTitleCase(surgicaltyp)}]}
         ]
       }).toArray(function (err, result) {
         if (err) throw err;

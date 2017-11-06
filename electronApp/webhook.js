@@ -100,8 +100,8 @@ app.post('/', function (req, res) {
         console.log(result);
         res.status(200).json({
           source: 'webhook',
-          speech: 'Invoice Amount'+result[0]["Invoice amount"],
-          displayText:'Invoice Amount'+result[0]["Invoice amount"]
+          speech: 'Invoice Amount: HK$'+result[0]["Invoice amount"],
+          displayText:'Invoice Amount: HK$'+result[0]["Invoice amount"]
         })
         db.close();
       });

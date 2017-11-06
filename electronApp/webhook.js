@@ -64,7 +64,24 @@ app.get('/', function (req, res) {
   res.send("/richowebsites");
 });
 app.post('/', function (req, res) {
-  res.send("/richowebsites");
+  mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
+    if (err) {
+      console.log(err);
+      process.exit(1);
+    }
+    // Save database object from the callback for reuse.
+    var db = database;
+    db.collection("surgery").find({
+      $and: [
+        { "HOSPITAL": hospittyp },
+        { "OPERATION": surgicaltyp }
+      ]
+    }).toArray(function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      db.close();
+    });
+  });
 });
 app.get("/formupload", function (req, res) {
   res.sendFile(__dirname + '/uploadform.html');
@@ -77,4 +94,4 @@ app.get('/chat', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 
-app.listen(7000);
+app.listen(process.env.PORT || 7000);

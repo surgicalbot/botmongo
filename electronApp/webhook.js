@@ -82,6 +82,7 @@ app.post('/', function (req, res) {
       db.close();
     });
   });
+  res.send("It is good");
 });
 app.get("/formupload", function (req, res) {
   res.sendFile(__dirname + '/uploadform.html');

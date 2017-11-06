@@ -79,6 +79,7 @@ app.post('/', function (req, res) {
   const parameters = req.body.result.parameters; // https://dialogflow.com/docs/actions-and-parameters
   const hospittyp = parameters.hospital_type;
   const surgicaltyp = parameters.surgical_type;
+  const treatmentyp = parameters.treatment_type;
   if (action == "input.surgery") {
     mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
       if (err) {
@@ -90,7 +91,8 @@ app.post('/', function (req, res) {
       db.collection("surgery").find({
         $and: [
           { $or:[{"HOSPITAL": hospittyp.toLowerCase() },{"HOSPITAL": hospittyp.toUpperCase() },{"HOSPITAL": capitalizeFirstLetter(hospittyp)},{"HOSPITAL": toTitleCase(hospittyp)}]},
-          { $or:[{"OPERATION": surgicaltyp.toLowerCase() },{"OPERATION": surgicaltyp.toUpperCase() },{"OPERATION": capitalizeFirstLetter(surgicaltyp)},{"OPERATION": toTitleCase(surgicaltyp)}]}
+          { $or:[{"OPERATION": surgicaltyp.toLowerCase() },{"OPERATION": surgicaltyp.toUpperCase() },{"OPERATION": capitalizeFirstLetter(surgicaltyp)},{"OPERATION": toTitleCase(surgicaltyp)}]},
+          { $or:[{"TREATMENT": treatmentyp.toLowerCase() },{"TREATMENT": treatmentyp.toUpperCase() },{"TREATMENT": capitalizeFirstLetter(treatmentyp)},{"TREATMENT": toTitleCase(treatmentyp)}]}
         ]
       }).toArray(function (err, result) {
         if (err) throw err;

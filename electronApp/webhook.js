@@ -102,7 +102,9 @@ app.post('/', function (req, res) {
         if (req.body.result.metadata.intentName == "BreakdownC") {
           var html = '';
           for (var key in result[0]) {
+            if(key!='_id'){
             html += `${key}: ${result[0][key]}<br/>`;
+            }
           }
           res.status(200).json({
             source: 'webhook',

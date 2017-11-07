@@ -75,7 +75,7 @@ app.post('/', function (req, res) {
   let action = req.body.result.action; // https://dialogflow.com/docs/actions-and-parameters
 
   // Parameters are any entites that Dialogflow has extracted from the request.
-  const parameters = req.body.result.parameters||result.contexts[0].parameters; // https://dialogflow.com/docs/actions-and-parameters
+  const parameters = req.body.result.parameters||req.body.result.contexts[0].parameters; // https://dialogflow.com/docs/actions-and-parameters
   const hospittyp = parameters.hospital_type;
   const surgicaltyp = parameters.surgical_type;
   const treatmentyp = parameters.treatment_type;

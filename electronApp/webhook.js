@@ -101,8 +101,8 @@ app.post('/', function (req, res) {
         console.log(result);
         res.status(200).json({
           source: 'webhook',
-          speech: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. \u000A   \u000A 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  \u000A  2.Do u want breakdown eg operation theatre, doc fees`,
-          displayText: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. \u000A   \u000A 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  \u000A  2.Do u want breakdown eg operation theatre, doc fees`
+          speech: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. <br/><br/> 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  <br/>  2.Do u want breakdown eg operation theatre, doc fees`,
+          displayText: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. <br/>   <br/> 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  <br/>  2.Do u want breakdown eg operation theatre, doc fees`
         })
         db.close();
       });

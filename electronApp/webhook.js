@@ -99,7 +99,7 @@ app.post('/', function (req, res) {
       }).toArray(function (err, result) {
         if (err) throw err;
         console.log(result);
-        if (result.metadata.intentName == "BreakdownC") {
+        if (req.body.result.metadata.intentName == "BreakdownC") {
           var html = '';
           for (var key in data) {
             html += `${key}: ${data[key]}:`;

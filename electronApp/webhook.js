@@ -101,7 +101,7 @@ app.post('/', function (req, res) {
         console.log(result);
         if (req.body.result.metadata.intentName == "BreakdownC") {
           var html = '';
-          for (var key in data) {
+          for (var key in result[0]) {
             html += `${key}: ${data[key]}:`;
           }
           res.status(200).json({

@@ -76,11 +76,11 @@ app.post('/', function (req, res) {
 
   // Parameters are any entites that Dialogflow has extracted from the request.
   const parameters = req.body.result.contexts[0].parameters || req.body.result.parameters; // https://dialogflow.com/docs/actions-and-parameters
-  const hospittyp = parameters.hospital_type!=''?parameters.hospital_type:"Union Hospital";
+  const hospittyp = parameters.hospital_type != '' ? parameters.hospital_type : "Union Hospital";
   const surgicaltyp = parameters.surgical_type;
-  const treatmentyp = parameters.treatment_type!=''?parameters.treatment_type:"";
+  const treatmentyp = parameters.treatment_type != '' ? parameters.treatment_type : "";
   console.log(parameters);
-  console.log(hospittyp+"=>"+surgicaltyp+"=>"+treatmentyp);
+  console.log(hospittyp + "=>" + surgicaltyp + "=>" + treatmentyp);
   const totalCost = (parameters.Statistics != "" && parameters.Statistics != null && parameters.Statistics != undefined) ? parameters.Statistics : "mean";
   if (action == "input.surgery") {
     mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
@@ -90,17 +90,17 @@ app.post('/', function (req, res) {
       }
       // Save database object from the callback for reuse.
       var db = database;
-      var filterarray='';
-      if(treatmentyp!=""){
-        filterarray=[
+      var filterarray = '';
+      if (treatmentyp != "") {
+        filterarray = [
           { $or: [{ "HOSPITAL": hospittyp.toLowerCase() }, { "HOSPITAL": hospittyp.toUpperCase() }, { "HOSPITAL": capitalizeFirstLetter(hospittyp) }, { "HOSPITAL": toTitleCase(hospittyp) }] },
           { $or: [{ "OPERATION": surgicaltyp.toLowerCase() }, { "OPERATION": surgicaltyp.toUpperCase() }, { "OPERATION": capitalizeFirstLetter(surgicaltyp) }, { "OPERATION": toTitleCase(surgicaltyp) }] },
           { $or: [{ "TREATMENT": treatmentyp.toLowerCase() }, { "TREATMENT": treatmentyp.toUpperCase() }, { "TREATMENT": capitalizeFirstLetter(treatmentyp) }, { "TREATMENT": toTitleCase(treatmentyp) }] },
           { $or: [{ "Statistics": totalCost.toLowerCase() }, { "Statistics": totalCost.toUpperCase() }, { "Statistics": capitalizeFirstLetter(totalCost) }] }
         ]
       }
-      else{
-        filterarray=[
+      else {
+        filterarray = [
           { $or: [{ "HOSPITAL": hospittyp.toLowerCase() }, { "HOSPITAL": hospittyp.toUpperCase() }, { "HOSPITAL": capitalizeFirstLetter(hospittyp) }, { "HOSPITAL": toTitleCase(hospittyp) }] },
           { $or: [{ "OPERATION": surgicaltyp.toLowerCase() }, { "OPERATION": surgicaltyp.toUpperCase() }, { "OPERATION": capitalizeFirstLetter(surgicaltyp) }, { "OPERATION": toTitleCase(surgicaltyp) }] },
           { $or: [{ "Statistics": totalCost.toLowerCase() }, { "Statistics": totalCost.toUpperCase() }, { "Statistics": capitalizeFirstLetter(totalCost) }] }
@@ -111,27 +111,30 @@ app.post('/', function (req, res) {
       }).toArray(function (err, result) {
         if (err) throw err;
         console.log(result);
-        if (req.body.result.metadata.intentName == "BreakdownC") {
-          var html = '';
-          for (var key in result[0]) {
-            if(key!='_id'){
+        // if (req.body.result.metadata.intentName == "BreakdownC") {
+        var html = '';
+        for (var key in result[0]) {
+          if (key != '_id') {
             html += `${key}: ${result[0][key]}<br/>`;
-            }
           }
+        }
+        if (html) {
           res.status(200).json({
             source: 'webhook',
             speech: html,
             displayText: html
           })
         }
-        else {
-          res.status(200).json({
-            source: 'webhook',
-            speech: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. <br/><br/> 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  <br/>  2.Do u want breakdown eg operation theatre, doc fees`,
-            displayText: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. <br/>   <br/> 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  <br/>  2.Do u want breakdown eg operation theatre, doc fees`
-          })
-          db.close();
-        }
+        // }
+        // else {
+        //   res.status(200).json({
+        //     source: 'webhook',
+        //     speech: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. <br/><br/> 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  <br/>  2.Do u want breakdown eg operation theatre, doc fees`,
+        //     displayText: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. <br/>   <br/> 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  <br/>  2.Do u want breakdown eg operation theatre, doc fees`
+        //   })
+
+        // }
+        db.close();
       });
     });
 

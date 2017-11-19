@@ -114,7 +114,7 @@ app.post('/', function (req, res) {
         // if (req.body.result.metadata.intentName == "BreakdownC") {
         var html = '';
         for (var key in result[0]) {
-          if (key != '_id' && key.toLowerCase()!="Date") {
+          if (key != '_id' && key.toLowerCase()!="date") {
             html += `${key}: ${result[0][key]}<br/>`;
           }
         }

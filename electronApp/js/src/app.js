@@ -6,8 +6,9 @@ This file is part of the Innovation LAB - Offline Bot.
 ------------------------------------------------------------------- */
 
 define(['jquery', 'settings', 'apiService', 'utils'], function ($, config, apiService, utils) {
-    $(function (eve) {
-      
+    $(function () {
+        $("textarea#btn-input").val("Hi");
+        $("a#btn-send-message").click();
         /* Web Popup Adjustment header hiding */
         function adjustPopups() {
             let msgboxh = $("div.header-popup").next().height();

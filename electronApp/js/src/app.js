@@ -1,6 +1,4 @@
-﻿import { setTimeout } from "timers";
-
-'use strict';
+﻿'use strict';
 
 /* -------------------------------------------------------------------
 Copyright (c) 2017-2017 Hexaware Technologies

@@ -6,7 +6,8 @@ This file is part of the Innovation LAB - Offline Bot.
 ------------------------------------------------------------------- */
 
 define(['jquery', 'settings', 'apiService', 'utils'], function ($, config, apiService, utils) {
-    $(function () {
+    $(function (eve) {
+        sendMessage(undefined,eve,"Hi");
         /* Web Popup Adjustment header hiding */
         function adjustPopups() {
             let msgboxh = $("div.header-popup").next().height();

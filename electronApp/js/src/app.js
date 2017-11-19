@@ -1,4 +1,6 @@
-﻿'use strict';
+﻿import { setTimeout } from "timers";
+
+'use strict';
 
 /* -------------------------------------------------------------------
 Copyright (c) 2017-2017 Hexaware Technologies
@@ -8,7 +10,9 @@ This file is part of the Innovation LAB - Offline Bot.
 define(['jquery', 'settings', 'apiService', 'utils'], function ($, config, apiService, utils) {
     $(function () {
         $("textarea#btn-input").val("Hi");
-        $("a#btn-send-message").click();
+        setTimeout(() => {
+            $("a#btn-send-message").click();
+        }, 2000)
         /* Web Popup Adjustment header hiding */
         function adjustPopups() {
             let msgboxh = $("div.header-popup").next().height();
@@ -20,7 +24,7 @@ define(['jquery', 'settings', 'apiService', 'utils'], function ($, config, apiSe
             let finalcss = 'calc(100%-' + finalcalc + 'px)';
             $("div.chat-body").css('height', 'calc(' + finalcalc + 'px)');
         }
-//
+        //
         /*Query of when Web Popup=1 opens popup  window, hiding web headers*/
         let popup = window.location.search.substring(1).split("=");
         if (popup[1] == 1) {
@@ -105,7 +109,7 @@ define(['jquery', 'settings', 'apiService', 'utils'], function ($, config, apiSe
         //Chatbox Send message
         $("textarea#btn-input").keypress(function (e) {
             if (e.which == 13) {
-                if($.trim($(this).val())!=""){
+                if ($.trim($(this).val()) != "") {
                     sendMessage($(this), e);
                 }
             }
@@ -128,7 +132,7 @@ define(['jquery', 'settings', 'apiService', 'utils'], function ($, config, apiSe
         });
         //Card Response Postback button
         $(document).on('click', '.cardresponsepayload', function (e) {
-          var textInput=$(this).text();
+            var textInput = $(this).text();
             var payloadInput = $(this).data().cardpayloadbutton;
             console.log('Button Payload' + payloadInput);
             processor.askBot(payloadInput, textInput, function (error, html) {
@@ -254,10 +258,10 @@ define(['jquery', 'settings', 'apiService', 'utils'], function ($, config, apiSe
             e.preventDefault();
         });
 
-        $("#btndownload").on('click',function(e){
-          e.preventDefault();
-          var url=$('.img-circle').data().src;
-          window.location=(url,'Download');
+        $("#btndownload").on('click', function (e) {
+            e.preventDefault();
+            var url = $('.img-circle').data().src;
+            window.location = (url, 'Download');
         });
 
         //Disabling Header,Right Click and Developer windows Functionality for Web
@@ -269,10 +273,10 @@ define(['jquery', 'settings', 'apiService', 'utils'], function ($, config, apiSe
 
             $(document).keydown(function (event) {
                 if (event.keyCode == 123) {
-                     return false;
+                    return false;
                 }
                 else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
-                     return false;  //Prevent from ctrl+shift+i
+                    return false;  //Prevent from ctrl+shift+i
                 }
             });
         }

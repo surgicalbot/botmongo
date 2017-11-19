@@ -119,6 +119,7 @@ app.post('/', function (req, res) {
           }
         }
         if (html) {
+          html+="interested in min/max/median case instead? or other hospital?";
           res.status(200).json({
             source: 'webhook',
             speech: html,

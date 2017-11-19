@@ -80,6 +80,7 @@ app.post('/', function (req, res) {
   const surgicaltyp = parameters.surgical_type;
   const treatmentyp = parameters.treatment_type;
   console.log(parameters);
+  console.log(hospittyp+"=>"+surgicaltyp+"=>"+treatmentyp);
   const totalCost = (parameters.Statistics != "" && parameters.Statistics != null && parameters.Statistics != undefined) ? parameters.Statistics : "mean";
   if (action == "input.surgery") {
     mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {

@@ -93,7 +93,7 @@ app.post('/', function (req, res) {
       }).toArray(function (err, result) {
         console.log(result);
         var treatmentarray = [];
-        for (var keys in JSON.parse(result)) {
+        for (var keys in result) {
           console.log(keys["TREATMENT"]);
           if (treatmentarray.indexOf(keys["TREATMENT"]) <0) {
             treatmentarray.push(keys["TREATMENT"]);

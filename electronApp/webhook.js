@@ -100,7 +100,7 @@ app.post('/', function (req, res) {
         }
         var html = '';
         for (var treatment in treatmentarray) {
-          html += " > " + treatmentarray[treatment];
+          html += " > " + treatmentarray[treatment] + "<br/>";
         }
         if (html) {
           html += "<br/>Please select your operation type?";

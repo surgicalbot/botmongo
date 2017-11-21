@@ -79,6 +79,7 @@ app.post('/', function (req, res) {
   if (action == "input.treatment") {
     const treatmentyp = parameters.treatment_type != '' ? parameters.treatment_type : "";
     mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
+      var db = database;
       if (err) {
         console.log(err);
         process.exit(1);

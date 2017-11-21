@@ -94,13 +94,13 @@ app.post('/', function (req, res) {
         var treatmentarray = [];
         for (var keys in result) {
           console.log(result[keys]["TREATMENT"]);
-          if (treatmentarray.indexOf(result[keys]["TREATMENT"]) <0) {
-            treatmentarray.push(result[keys]["TREATMENT"]);
+          if (treatmentarray.indexOf(result[keys]["OPERATION"]) <0) {
+            treatmentarray.push(result[keys]["OPERATION"]);
           }
         }
         var html = '';
         for (var treatment in treatmentarray) {
-          html += " > " + treatment;
+          html += " > " + treatmentarray[treatment];
         }
         if (html) {
           html += "<br/>Please select your operation type?";

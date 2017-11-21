@@ -76,13 +76,31 @@ app.post('/', function (req, res) {
 
   // Parameters are any entites that Dialogflow has extracted from the request.
   const parameters = req.body.result.contexts[0].parameters || req.body.result.parameters; // https://dialogflow.com/docs/actions-and-parameters
-  const hospittyp = parameters.hospital_type != '' ? parameters.hospital_type : "Union Hospital";
-  const surgicaltyp = parameters.surgical_type;
-  const treatmentyp = parameters.treatment_type != '' ? parameters.treatment_type : "";
-  console.log(parameters);
-  console.log(hospittyp + "=>" + surgicaltyp + "=>" + treatmentyp);
-  const totalCost = (parameters.Statistics != "" && parameters.Statistics != null && parameters.Statistics != undefined) ? parameters.Statistics : "mean";
+  if (action == "input.treatment") {
+    const treatmentyp = parameters.treatment_type != '' ? parameters.treatment_type : "";
+    mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
+      if (err) {
+        console.log(err);
+        process.exit(1);
+      }
+      filterarray = [
+        { $or: [{ "TREATMENT": treatmentyp.toLowerCase() }, { "TREATMENT": treatmentyp.toUpperCase() }, { "TREATMENT": capitalizeFirstLetter(treatmentyp) }, { "TREATMENT": toTitleCase(treatmentyp) }] }
+      ]
+      db.collection("surgery").find({
+        $and: filterarray
+      }).toArray(function (err, result) {
+        console.log(result);
+      });
+      db.close();
+    });
+  }
   if (action == "input.surgery") {
+    const hospittyp = parameters.hospital_type != '' ? parameters.hospital_type : "Union Hospital";
+    const surgicaltyp = parameters.surgical_type;
+    const treatmentyp = parameters.treatment_type != '' ? parameters.treatment_type : "";
+    console.log(parameters);
+    console.log(hospittyp + "=>" + surgicaltyp + "=>" + treatmentyp);
+    const totalCost = (parameters.Statistics != "" && parameters.Statistics != null && parameters.Statistics != undefined) ? parameters.Statistics : "mean";
     mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
       if (err) {
         console.log(err);
@@ -114,12 +132,12 @@ app.post('/', function (req, res) {
         // if (req.body.result.metadata.intentName == "BreakdownC") {
         var html = '';
         for (var key in result[0]) {
-          if (key != '_id' && key.toLowerCase()!="date") {
+          if (key != '_id' && key.toLowerCase() != "date") {
             html += `${key}: ${result[0][key]}<br/>`;
           }
         }
         if (html) {
-          html+="<br/>interested in min/max/median case instead? or other hospital?";
+          html += "<br/>interested in min/max/median case instead? or other hospital?";
           res.status(200).json({
             source: 'webhook',
             speech: html,

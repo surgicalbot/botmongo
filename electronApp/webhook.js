@@ -77,6 +77,7 @@ app.post('/', function (req, res) {
   // Parameters are any entites that Dialogflow has extracted from the request.
   const parameters = req.body.result.parameters; // https://dialogflow.com/docs/actions-and-parameters
   if (action == "input.treatment") {
+    var treatmentarray = [];
     const treatmentyp = parameters.treatment_type != '' ? parameters.treatment_type : "";
     mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
       var db = database;
@@ -90,7 +91,24 @@ app.post('/', function (req, res) {
       db.collection("surgery").find({
         $and: filterarray
       }).toArray(function (err, result) {
-        console.log(result);
+        var treatmentarray = [];
+        for (var keys in result) {
+          if (treatmentarray.indexOf(keys["TREATMENT"]) === -1) {
+            treatmentarray.push(keys["TREATMENT"]);
+          }
+        }
+        var html = '';
+        for (var treatment in treatmentarray) {
+          html += " > " + treatment;
+        }
+        if (html) {
+          html += "<br/>Please select your operation type?";
+          res.status(200).json({
+            source: 'webhook',
+            speech: html,
+            displayText: html
+          })
+        }
       });
       db.close();
     });

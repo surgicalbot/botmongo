@@ -93,9 +93,8 @@ app.post('/', function (req, res) {
       }).toArray(function (err, result) {
         var treatmentarray = [];
         for (var keys in result) {
-          console.log(keys);
-          if (treatmentarray.indexOf(keys["TREATMENT"]) <0) {
-            treatmentarray.push(keys["TREATMENT"]);
+          if (treatmentarray.indexOf(result[keys]["TREATMENT"]) <0) {
+            treatmentarray.push(result[keys]["TREATMENT"]);
           }
         }
         var html = '';

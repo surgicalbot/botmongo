@@ -137,10 +137,10 @@ app.post('/', function (req, res) {
           }
         }
         var finallarray=[];
-        for (var treatsurgiment in surgicalarray) {
+        for (var treatsurgiment in hospitalarray) {
           var html = {};
-          html["title"]=surgicalarray[treatsurgiment];
-          html["payload"]=surgicalarray[treatsurgiment];
+          html["title"]=hospitalarray[treatsurgiment];
+          html["payload"]=hospitalarray[treatsurgiment];
           html["content_type"]="text";
           finallarray.push(html);
         }

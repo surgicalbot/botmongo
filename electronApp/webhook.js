@@ -114,6 +114,61 @@ app.post('/', function (req, res) {
       db.close();
     });
   }
+  if(action=="input.hospital"){
+
+    var surgicalarray = [];
+    const surgicaltyp = parameters.surgical_type != '' ? parameters.surgical_type : "";
+    mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
+      var db = database;
+      if (err) {
+        console.log(err);
+        process.exit(1);
+      }
+      filterarray = [
+        { $or: [{ "OPERATION": surgicaltyp.toLowerCase() }, { "OPERATION": surgicaltyp.toUpperCase() }, { "OPERATION": capitalizeFirstLetter(surgicaltyp) }, { "OPERATION": toTitleCase(surgicaltyp) }] }
+      ]
+      db.collection("surgery").find({
+        $and: filterarray
+      }).toArray(function (err, result) {
+        var surgicalarray = [];
+        for (var keys in result) {
+          console.log(result[keys]["HOSPITAL"]);
+          if (surgicalarray.indexOf(result[keys]["HOSPITAL"]) <0) {
+            surgicalarray.push(result[keys]["HOSPITAL"]);
+          }
+        }
+        var finallarray=[];
+        for (var treatsurgiment in surgicalarray) {
+          var html = {};
+          html["title"]=surgicalarray[treatsurgiment];
+          html["payload"]=surgicalarray[treatsurgiment];
+          html["content_type"]="text";
+          finallarray.push(html);
+        }
+        if (html) {
+          res.json({
+            speech:"",
+            displayText: "",
+            source: 'agent',
+            "messages": [
+                {
+                  "type": 4,
+                  "platform": "facebook",
+                  "payload": {
+                    "facebook": {
+                      "text": "Please Choose your Hospital?",
+                      "quick_replies": finallarray
+                    }
+                  }
+                }
+              ]
+            })
+        }
+      });
+      db.close();
+    });
+    
+  }
   if (action == "input.surgery") {
     const hospittyp = parameters.hospital_type != '' ? parameters.hospital_type : "Union Hospital";
     const surgicaltyp = parameters.surgical_type;

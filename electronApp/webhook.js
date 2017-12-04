@@ -131,9 +131,9 @@ app.post('/', function (req, res) {
       }).toArray(function (err, result) {
         var hospitalarray = [];
         for (var keys in result) {
-          console.log(result[keys]["HOSPITAL"]);
-          if (hospitalarray.indexOf(result[keys]["HOSPITAL"]) <0) {
-            hospitalarray.push(result[keys]["HOSPITAL"]);
+          console.log(result[keys]["Statistics"]);
+          if (hospitalarray.indexOf(result[keys]["Statistics"]) <0) {
+            hospitalarray.push(result[keys]["Statistics"]);
           }
         }
         var finallarray=[];

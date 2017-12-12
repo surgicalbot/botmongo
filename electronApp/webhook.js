@@ -100,10 +100,10 @@ app.post('/', function (req, res) {
         }
         var html = '';
         for (var treatment in treatmentarray) {
-          html += " > " + treatmentarray[treatment] + "<br/>";
+          html += " > " + treatmentarray[treatment] + "\n";
         }
         if (html) {
-          html += "<br/>Please select your operation type?";
+          html += "\nPlease select your operation type?";
           res.status(200).json({
             source: 'webhook',
             speech: html,
@@ -262,11 +262,11 @@ app.post('/', function (req, res) {
         var html = '';
         for (var key in result[0]) {
           if (key != '_id' && key.toLowerCase() != "date") {
-            html += `${key}: ${result[0][key]}<br/>`;
+            html += `${key}: ${result[0][key]}\n`;
           }
         }
         if (html) {
-          html += "<br/>interested in min/max/median case instead? or other hospital?";
+          html += "\ninterested in min/max/median case instead? or other hospital?";
           res.status(200).json({
             source: 'webhook',
             speech: html,
@@ -277,8 +277,8 @@ app.post('/', function (req, res) {
         // else {
         //   res.status(200).json({
         //     source: 'webhook',
-        //     speech: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. <br/><br/> 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  <br/>  2.Do u want breakdown eg operation theatre, doc fees`,
-        //     displayText: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. <br/>   <br/> 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  <br/>  2.Do u want breakdown eg operation theatre, doc fees`
+        //     speech: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. \n\n 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  \n  2.Do u want breakdown eg operation theatre, doc fees`,
+        //     displayText: `Invoice Amount: HK$ ${result[0]["Invoice amount"]}. \n   \n 1. Do you want to know any other Statistics like Mean, Median, Min, Max of Invoice Amount  \n  2.Do u want breakdown eg operation theatre, doc fees`
         //   })
 
         // }

@@ -257,9 +257,9 @@ app.post('/', function (req, res) {
         $and: filterarray
       }).toArray(function (err, result) {
         if (err) throw err;
-        console.log(result);
         // if (req.body.result.metadata.intentName == "BreakdownC") {
         var html = '';
+        if(result.length>0){
         for (var key in result[0]) {
           if (key != '_id' && key.toLowerCase() != "date") {
             html += `${key}: ${result[0][key]}\n`;
@@ -273,6 +273,15 @@ app.post('/', function (req, res) {
             displayText: html
           })
         }
+        }
+        else{
+             res.status(200).json({
+            source: 'webhook',
+            speech: "I didnt get that",
+            displayText: "I didnt get that"
+          })
+        }
+        
         // }
         // else {
         //   res.status(200).json({

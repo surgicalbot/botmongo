@@ -83,7 +83,6 @@ app.post('/', function (req, res) {
       var db = database;
       if (err) {
         console.log(err);
-        process.exit(1);
       }
       filterarray = [
         { $or: [{ "TREATMENT": treatmentyp.toLowerCase() }, { "TREATMENT": treatmentyp.toUpperCase() }, { "TREATMENT": capitalizeFirstLetter(treatmentyp) }, { "TREATMENT": toTitleCase(treatmentyp) }] }
@@ -91,6 +90,7 @@ app.post('/', function (req, res) {
       db.collection("surgery").find({
         $and: filterarray
       }).toArray(function (err, result) {
+        if(result.length>0){
         var treatmentarray = [];
         for (var keys in result) {
           console.log(result[keys]["TREATMENT"]);
@@ -110,6 +110,14 @@ app.post('/', function (req, res) {
             displayText: html
           })
         }
+        }
+         else{
+             res.status(200).json({
+            source: 'webhook',
+            speech: "I didnt get that",
+            displayText: "I didnt get that"
+          })
+        }
       });
       db.close();
     });
@@ -121,7 +129,7 @@ app.post('/', function (req, res) {
       var db = database;
       if (err) {
         console.log(err);
-        process.exit(1);
+
       }
       filterarray = [
         { $or: [{ "HOSPITAL": hospitaltype.toLowerCase() }, { "HOSPITAL": hospitaltype.toUpperCase() }, { "HOSPITAL": capitalizeFirstLetter(hospitaltype) }, { "HOSPITAL": toTitleCase(hospitaltype) }] }
@@ -129,6 +137,7 @@ app.post('/', function (req, res) {
       db.collection("surgery").find({
         $and: filterarray
       }).toArray(function (err, result) {
+        if(result.length>0){
         var hospitalarray = [];
         for (var keys in result) {
           console.log(result[keys]["Statistics"]);
@@ -163,6 +172,14 @@ app.post('/', function (req, res) {
               ]
             })
         }
+        }
+           else{
+             res.status(200).json({
+            source: 'webhook',
+            speech: "I didnt get that",
+            displayText: "I didnt get that"
+          })
+        }
       });
       db.close();
     });
@@ -175,7 +192,6 @@ app.post('/', function (req, res) {
       var db = database;
       if (err) {
         console.log(err);
-        process.exit(1);
       }
       filterarray = [
         { $or: [{ "OPERATION": surgicaltyp.toLowerCase() }, { "OPERATION": surgicaltyp.toUpperCase() }, { "OPERATION": capitalizeFirstLetter(surgicaltyp) }, { "OPERATION": toTitleCase(surgicaltyp) }] }
@@ -184,6 +200,7 @@ app.post('/', function (req, res) {
         $and: filterarray
       }).toArray(function (err, result) {
         var surgicalarray = [];
+        if(result.length>0){
         for (var keys in result) {
           console.log(result[keys]["HOSPITAL"]);
           if (surgicalarray.indexOf(result[keys]["HOSPITAL"]) <0) {
@@ -217,6 +234,15 @@ app.post('/', function (req, res) {
               ]
             })
         }
+        }
+       else{
+             res.status(200).json({
+            source: 'webhook',
+            speech: "I didnt get that",
+            displayText: "I didnt get that"
+          })
+        }
+
       });
       db.close();
     });
@@ -233,7 +259,6 @@ app.post('/', function (req, res) {
     mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
       if (err) {
         console.log(err);
-        process.exit(1);
       }
       // Save database object from the callback for reuse.
       var db = database;

@@ -249,7 +249,7 @@ if(action=="input.hospital"){
   
 }
 if (action == "input.surgery") {
-  if(req.body.result.metadata.intentName=="surgical_know-followup")
+  if(req.body.result.metadata.intentName=="surgical_know-followup" || req.body.result.metadata.intentName=="surgical_know - custom - custom")
   {
   parameters = req.body.result.contexts.length>0?req.body.result.contexts[1].parameters:req.body.result.parameters;
   }

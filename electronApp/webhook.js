@@ -249,6 +249,10 @@ if(action=="input.hospital"){
   
 }
 if (action == "input.surgery") {
+  if(req.body.result.metadata.intentName=="surgical_know-custom-followup")
+  {
+  const parameters = req.body.result.contexts.length>0?req.body.result.contexts[1].parameters:req.body.result.parameters;
+  }
   const hospittyp = parameters.hospital_type != '' ? parameters.hospital_type : "Union Hospital";
   const surgicaltyp = parameters.surgical_type;
   const treatmentyp = parameters.treatment_type != '' ? parameters.treatment_type : "";

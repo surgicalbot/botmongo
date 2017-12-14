@@ -249,9 +249,12 @@ if(action=="input.hospital"){
   
 }
 if (action == "input.surgery") {
-  if(req.body.result.metadata.intentName=="surgical_know-followup" || req.body.result.metadata.intentName=="surgical_know - custom - custom")
+  for(var rsltarray in req.body.result.contexts)
   {
-  parameters = req.body.result.contexts.length>0?req.body.result.contexts[1].parameters:req.body.result.parameters;
+  if(rsltarray.name=="surgical_know-followup")
+  {
+  parameters = rsltarray.parameters;
+  }
   }
   const hospittyp = parameters.hospital_type != '' ? parameters.hospital_type : "Union Hospital";
   const surgicaltyp = parameters.surgical_type;

@@ -75,7 +75,7 @@ if (!req.body || !req.body.result || !req.body.result.parameters) {
 let action = req.body.result.action; // https://dialogflow.com/docs/actions-and-parameters
 
 // Parameters are any entites that Dialogflow has extracted from the request.
-const parameters = req.body.result.contexts.length>0?req.body.result.contexts[0].parameters:req.body.result.parameters; // https://dialogflow.com/docs/actions-and-parameters
+var parameters = req.body.result.contexts.length>0?req.body.result.contexts[0].parameters:req.body.result.parameters; // https://dialogflow.com/docs/actions-and-parameters
 if (action == "input.treatment") {
   var treatmentarray = [];
   const treatmentyp = parameters.treatment_type != '' ? parameters.treatment_type : "";
@@ -251,7 +251,7 @@ if(action=="input.hospital"){
 if (action == "input.surgery") {
   if(req.body.result.metadata.intentName=="surgical_know-custom-followup")
   {
-  const parameters = req.body.result.contexts.length>0?req.body.result.contexts[1].parameters:req.body.result.parameters;
+  parameters = req.body.result.contexts.length>0?req.body.result.contexts[1].parameters:req.body.result.parameters;
   }
   const hospittyp = parameters.hospital_type != '' ? parameters.hospital_type : "Union Hospital";
   const surgicaltyp = parameters.surgical_type;

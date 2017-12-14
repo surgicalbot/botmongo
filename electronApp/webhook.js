@@ -254,6 +254,7 @@ if (action == "input.surgery") {
   const treatmentyp = parameters.treatment_type != '' ? parameters.treatment_type : "";
   console.log(parameters);
   console.log(req.body.result.contexts[0].parameters);
+  console.log(req.body.result.contexts);
   console.log(hospittyp + "=>" + surgicaltyp + "=>" + treatmentyp);
   console.log(req.body.result.metadata.intentName);
   const totalCost = (parameters.Statistics != "" && parameters.Statistics != null && parameters.Statistics != undefined) ? parameters.Statistics : "mean";

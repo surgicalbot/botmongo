@@ -255,6 +255,7 @@ if (action == "input.surgery") {
   console.log(parameters);
   console.log(req.body.result.contexts[0].parameters);
   console.log(hospittyp + "=>" + surgicaltyp + "=>" + treatmentyp);
+  console.log(req.body.result.metadata.intentName);
   const totalCost = (parameters.Statistics != "" && parameters.Statistics != null && parameters.Statistics != undefined) ? parameters.Statistics : "mean";
   mongodb.MongoClient.connect("mongodb://admin:admin123@ds149335.mlab.com:49335/hospital", function (err, database) {
     if (err) {
